@@ -1,0 +1,88 @@
+game_pack.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Firebug
+  rotate: false
+  xy: 804, 2
+  size: 60, 58
+  orig: 64, 64
+  offset: 2, 2
+  index: -1
+asteroid_m
+  rotate: false
+  xy: 916, 40
+  size: 23, 28
+  orig: 23, 28
+  offset: 0, 0
+  index: 2
+asteroid_l
+  rotate: false
+  xy: 961, 2
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: 2
+asteroid_m
+  rotate: false
+  xy: 866, 46
+  size: 23, 28
+  orig: 23, 28
+  offset: 0, 0
+  index: 1
+asteroid_l
+  rotate: false
+  xy: 866, 2
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: 1
+asteroid_m
+  rotate: false
+  xy: 2, 484
+  size: 27, 24
+  orig: 27, 24
+  offset: 0, 0
+  index: 3
+asteroid_l
+  rotate: false
+  xy: 916, 2
+  size: 43, 36
+  orig: 43, 36
+  offset: 0, 0
+  index: 3
+asteroid_s
+  rotate: false
+  xy: 31, 484
+  size: 14, 16
+  orig: 14, 16
+  offset: 0, 0
+  index: 2
+asteroid_s
+  rotate: false
+  xy: 47, 484
+  size: 17, 15
+  orig: 17, 15
+  offset: 0, 0
+  index: 1
+starfield
+  rotate: false
+  xy: 2, 2
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+asteroid_s
+  rotate: false
+  xy: 81, 484
+  size: 12, 14
+  orig: 12, 14
+  offset: 0, 0
+  index: 4
+asteroid_s
+  rotate: false
+  xy: 66, 484
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: 3
