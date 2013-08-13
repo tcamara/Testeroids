@@ -12,14 +12,11 @@ import com.timcamara.testeroids.components.*;
 
 
 public class InputSystem extends EntityProcessingSystem implements InputProcessor {
-	private static final float move_rate = 150f;
-	private static final float turn_rate = 5f;
-	private static final float fire_rate = .1f;
 	private boolean forward, left, right, fire;
-    private float timeToFire;
+//    private float timeToFire;
 	
-	@Mapper ComponentMapper<Position> positionMapper;
-	@Mapper ComponentMapper<Velocity> velocityMapper;
+	@Mapper ComponentMapper<Position> pm;
+	@Mapper ComponentMapper<Velocity> vm;
 	
 	@SuppressWarnings("unchecked")
 	public InputSystem() {
@@ -33,19 +30,19 @@ public class InputSystem extends EntityProcessingSystem implements InputProcesso
 	
 	@Override
 	protected void process(Entity e) {
-		Position position = positionMapper.get(e);
-		Velocity velocity = velocityMapper.get(e);
+		Position position = pm.get(e);
+		Velocity velocity = vm.get(e);
 		
 		if(forward) {
-			velocity.set(move_rate, position.rotation);
+			velocity.add(position.rotation);
 		}
 		
 		if(left) {
-			position.addRotation(turn_rate);
+			position.addRotation(Player.turn_rate);
 		}
 		
 		if(right) {
-			position.addRotation(-turn_rate);
+			position.addRotation(-Player.turn_rate);
 		}
 		
 		if(fire) {

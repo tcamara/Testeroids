@@ -2,7 +2,6 @@ package com.timcamara.testeroids.components;
 
 import com.artemis.Component;
 import com.artemis.utils.TrigLUT;
-import com.artemis.utils.FastMath;
 import com.badlogic.gdx.math.Vector2;
 
 public class Velocity extends Component {
@@ -12,7 +11,7 @@ public class Velocity extends Component {
 	public float   friction;
 	
 	public Velocity(float speed, float angle, float speed_max) {
-		this(speed, angle, speed_max, 0, 0);
+		this(speed, angle, speed_max, speed_max, 1);
 	}
 	
 	public Velocity(float speed, float angle, float speed_max, float accel, float friction) {
@@ -23,11 +22,14 @@ public class Velocity extends Component {
 		this.speed_max = speed_max;
 		this.accel = accel;
 		this.friction = friction;
+		
+		// Make sure we don't exceed limit
+		limiter();
 	}
 	
-	public void add(float speed, float angle) {
-		this.speed.x += speed * TrigLUT.cosDeg(angle + 90);
-		this.speed.y += speed * TrigLUT.sinDeg(angle + 90);
+	public void add(float angle) {
+		this.speed.x += accel * TrigLUT.cosDeg(angle + 90);
+		this.speed.y += accel * TrigLUT.sinDeg(angle + 90);
 		
 		// Make sure we don't exceed limit
 		limiter();
@@ -43,7 +45,7 @@ public class Velocity extends Component {
 	
 	private void limiter() {
 		if(speed.len() > speed_max) {
-			speed.mul(speed_max / speed.len());
+			speed.limit(speed_max);
 		}
 	}
 }

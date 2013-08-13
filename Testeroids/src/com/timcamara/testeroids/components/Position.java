@@ -50,17 +50,17 @@ public class Position extends Component {
 	
 	// It's a spherical world!
 	private void limiter() {
-		if(x > TesteroidsGame.screen_width) {
-			x = 0;
+		if(x > TesteroidsGame.screen_width + 20) {
+			x = -20;
 		}
-		if(y > TesteroidsGame.screen_height) {
-			y = 0;
+		if(y > TesteroidsGame.screen_height + 20) {
+			y = -20;
 		}
-		if(x < 0) {
-			x = TesteroidsGame.screen_width;
+		if(x < -20) {
+			x = TesteroidsGame.screen_width + 20;
 		}
-		if(y < 0) {
-			y = TesteroidsGame.screen_height;
+		if(y < -20) {
+			y = TesteroidsGame.screen_height + 20;
 		}
 	}
 }

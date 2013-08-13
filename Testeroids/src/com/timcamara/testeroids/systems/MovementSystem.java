@@ -21,6 +21,10 @@ public class MovementSystem extends EntityProcessingSystem {
 		Position position = pm.get(e);
 		Velocity velocity = vm.get(e);
 		
-		position.add(velocity.x * world.delta, velocity.y * world.delta);
+		// Calculate new position based on velocity
+		position.add(velocity.speed.x * world.delta, velocity.speed.y * world.delta);
+		
+		// Make friction take effect on velocity
+		velocity.speed.scl(velocity.friction);
 	}
 }

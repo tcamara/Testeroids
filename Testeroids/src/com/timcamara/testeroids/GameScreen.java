@@ -13,13 +13,13 @@ import com.timcamara.testeroids.components.*;
 import com.timcamara.testeroids.systems.*;
 
 public class GameScreen implements Screen {
-	private OrthographicCamera camera;
-	private TesteroidsGame     game;
-	private TextureAtlas       atlas;
-	private World              world;
+	private OrthographicCamera  camera;
+	private TesteroidsGame      game;
+	private TextureAtlas        atlas;
+	private World               world;
 	private GraphicRenderSystem spriteRenderSystem;
-	private MovementSystem     movementSystem;
-	private InputSystem        inputSystem;
+	private MovementSystem      movementSystem;
+	private InputSystem         inputSystem;
 	
 	public GameScreen(TesteroidsGame tgame) {
 		game = tgame;
@@ -55,7 +55,7 @@ public class GameScreen implements Screen {
 		Graphic shipGraphic = new Graphic(atlas.findRegion("Firebug"));
 		ship.addComponent(shipGraphic);
 		ship.addComponent(new Position((TesteroidsGame.screen_width / 2) - (shipGraphic.sprite.getWidth() / 2), (TesteroidsGame.screen_height / 2) - (shipGraphic.sprite.getHeight() / 2)));
-		ship.addComponent(new Velocity(500f, 500f));
+		ship.addComponent(new Velocity(0, 0, Player.max_speed, Player.acceleration, Player.friction));
 		ship.addToWorld();
 		
 		// Add Asteroid
@@ -65,11 +65,8 @@ public class GameScreen implements Screen {
 			asteroid.addComponent(new Asteroid(2));
 			asteroid.addComponent(new Graphic(atlas.findRegion("asteroid_l", 1)));
 			asteroid.addComponent(new Position((TesteroidsGame.screen_width / 2), (TesteroidsGame.screen_height / 2)));
-			
-			float x_dir = (float)rand.nextInt(200) - 100;
-			float y_dir = (float)rand.nextInt(200) - 100;
-			
-			asteroid.addComponent(new Velocity(x_dir, y_dir, x_dir, y_dir));
+			asteroid.addComponent(new Velocity(Asteroid.max_speed, (float)rand.nextInt(360), Asteroid.max_speed));
+			System.out.println(Asteroid.max_speed);
 			asteroid.addToWorld();
 		}
 	}
