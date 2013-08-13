@@ -1,5 +1,7 @@
 package com.timcamara.testeroids;
 
+import java.util.Random;
+
 import com.artemis.Entity;
 import com.artemis.World;
 import com.badlogic.gdx.Gdx;
@@ -47,14 +49,29 @@ public class GameScreen implements Screen {
 		bg.addComponent(new Position());
 		bg.addToWorld();
 		
-		// Add ship
+		// Add Ship
 		Entity ship = world.createEntity();
 		ship.addComponent(new Player());
-		Graphic graphic = new Graphic(atlas.findRegion("Firebug"));
-		ship.addComponent(graphic);
-		ship.addComponent(new Position((TesteroidsGame.screen_width / 2) - (graphic.sprite.getWidth() / 2), (TesteroidsGame.screen_height / 2) - (graphic.sprite.getHeight() / 2)));
+		Graphic shipGraphic = new Graphic(atlas.findRegion("Firebug"));
+		ship.addComponent(shipGraphic);
+		ship.addComponent(new Position((TesteroidsGame.screen_width / 2) - (shipGraphic.sprite.getWidth() / 2), (TesteroidsGame.screen_height / 2) - (shipGraphic.sprite.getHeight() / 2)));
 		ship.addComponent(new Velocity(500f, 500f));
 		ship.addToWorld();
+		
+		// Add Asteroid
+		Random rand = new Random();
+		for(int i = 0; i < 5; i++) {
+			Entity asteroid = world.createEntity();
+			asteroid.addComponent(new Asteroid(2));
+			asteroid.addComponent(new Graphic(atlas.findRegion("asteroid_l", 1)));
+			asteroid.addComponent(new Position((TesteroidsGame.screen_width / 2), (TesteroidsGame.screen_height / 2)));
+			
+			float x_dir = (float)rand.nextInt(200) - 100;
+			float y_dir = (float)rand.nextInt(200) - 100;
+			
+			asteroid.addComponent(new Velocity(x_dir, y_dir, x_dir, y_dir));
+			asteroid.addToWorld();
+		}
 	}
 	
 	@Override

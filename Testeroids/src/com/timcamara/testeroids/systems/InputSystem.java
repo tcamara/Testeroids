@@ -18,12 +18,12 @@ public class InputSystem extends EntityProcessingSystem implements InputProcesso
 	private boolean forward, left, right, fire;
     private float timeToFire;
 	
-	@Mapper ComponentMapper<Position> pm;
-	@Mapper ComponentMapper<Velocity> vm;
+	@Mapper ComponentMapper<Position> positionMapper;
+	@Mapper ComponentMapper<Velocity> velocityMapper;
 	
 	@SuppressWarnings("unchecked")
 	public InputSystem() {
-		super(Aspect.getAspectForAll(Position.class, Velocity.class));
+		super(Aspect.getAspectForAll(Player.class, Position.class, Velocity.class));
 	}
 	
 	@Override
@@ -33,8 +33,8 @@ public class InputSystem extends EntityProcessingSystem implements InputProcesso
 	
 	@Override
 	protected void process(Entity e) {
-		Position position = pm.get(e);
-		Velocity velocity = vm.get(e);
+		Position position = positionMapper.get(e);
+		Velocity velocity = velocityMapper.get(e);
 		
 		if(forward) {
 			velocity.set(move_rate, position.rotation);

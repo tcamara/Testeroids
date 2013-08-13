@@ -8,7 +8,6 @@ import com.artemis.annotations.Mapper;
 import com.artemis.utils.ImmutableBag;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.timcamara.testeroids.TesteroidsGame;
 import com.timcamara.testeroids.components.Position;
 import com.timcamara.testeroids.components.Graphic;
 

@@ -1,7 +1,6 @@
 package com.timcamara.testeroids.components;
 
 import com.artemis.Component;
-import com.artemis.utils.TrigLUT;
 import com.timcamara.testeroids.TesteroidsGame;
 
 public class Position extends Component {
