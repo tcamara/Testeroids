@@ -52,9 +52,11 @@ public class GraphicRenderSystem extends EntitySystem {
 			Position position = pm.getSafe(e);
 			Graphic graphic = sm.get(e);
 			
-			graphic.sprite.setPosition(position.x, position.y);
-			graphic.sprite.setRotation(position.rotation % 360);
-			graphic.sprite.draw(batch);
+			if(!graphic.disabled) {
+				graphic.sprite.setPosition(position.x, position.y);
+				graphic.sprite.setRotation(position.rotation % 360);
+				graphic.sprite.draw(batch);
+			}
 		}
 	}
 	
