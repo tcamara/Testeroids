@@ -10,8 +10,8 @@ public class Velocity extends Component {
 	public float   accel;
 	public float   friction;
 	
-	public Velocity(float speed, float angle, float speed_max) {
-		this(speed, angle, speed_max, speed_max, 1);
+	public Velocity(float speed, float angle) {
+		this(speed, angle, speed, speed, 1);
 	}
 	
 	public Velocity(float speed, float angle, float speed_max, float accel, float friction) {

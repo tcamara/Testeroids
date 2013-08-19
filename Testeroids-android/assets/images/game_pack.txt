@@ -65,6 +65,13 @@ asteroid_s
   orig: 17, 15
   offset: 0, 0
   index: 1
+bullet
+  rotate: false
+  xy: 31, 502
+  size: 2, 3
+  orig: 2, 3
+  offset: 0, 0
+  index: -1
 starfield
   rotate: false
   xy: 2, 2

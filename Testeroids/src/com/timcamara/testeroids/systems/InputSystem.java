@@ -3,24 +3,33 @@ package com.timcamara.testeroids.systems;
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
+import com.artemis.World;
 import com.artemis.annotations.Mapper;
 import com.artemis.systems.EntityProcessingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.timcamara.testeroids.EntityFactory;
 import com.timcamara.testeroids.components.*;
 
-
 public class InputSystem extends EntityProcessingSystem implements InputProcessor {
-	private boolean forward, left, right, fire;
-//    private float timeToFire;
+	private World        world;
+	private TextureAtlas atlas;
+	private boolean      forward, left, right, fire;
+    private int          fire_timer;
+    private int          fire_timer_max = 20;
 	
 	@Mapper ComponentMapper<Position> pm;
 	@Mapper ComponentMapper<Velocity> vm;
+	@Mapper ComponentMapper<Graphic>  gm;
 	
 	@SuppressWarnings("unchecked")
-	public InputSystem() {
-		super(Aspect.getAspectForAll(Player.class, Position.class, Velocity.class));
+	public InputSystem(World world, TextureAtlas atlas) {
+		super(Aspect.getAspectForAll(Player.class, Position.class, Velocity.class, Graphic.class));
+		
+		this.world = world;
+		this.atlas = atlas;
 	}
 	
 	@Override
@@ -45,9 +54,14 @@ public class InputSystem extends EntityProcessingSystem implements InputProcesso
 			position.addRotation(-Player.turn_rate);
 		}
 		
-		if(fire) {
+		if(fire && fire_timer <= 0) {
+			fire_timer = fire_timer_max; // reset timer for bullet limiting
+			Graphic graphic = gm.get(e);
 			
+			EntityFactory.createBullet(world, atlas, (position.x + (graphic.sprite.getWidth() / 2)), (position.y + (graphic.sprite.getHeight() / 2)), position.rotation);
 		}
+		
+		fire_timer--; // tick down till we can fire again
 	}
 	
 	@Override

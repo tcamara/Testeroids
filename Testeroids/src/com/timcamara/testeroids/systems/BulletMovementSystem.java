@@ -8,13 +8,13 @@ import com.artemis.systems.EntityProcessingSystem;
 import com.timcamara.testeroids.TesteroidsGame;
 import com.timcamara.testeroids.components.*;
 
-public class MovementSystem extends EntityProcessingSystem {
+public class BulletMovementSystem extends EntityProcessingSystem {
 	@Mapper ComponentMapper<Position> pm;
 	@Mapper ComponentMapper<Velocity> vm;
 	
 	@SuppressWarnings("unchecked")
-	public MovementSystem() {
-		super(Aspect.getAspectForAll(Position.class, Velocity.class).exclude(Bullet.class));
+	public BulletMovementSystem() {
+		super(Aspect.getAspectForAll(Position.class, Velocity.class, Bullet.class));
 	}
 	
 	@Override
@@ -28,18 +28,9 @@ public class MovementSystem extends EntityProcessingSystem {
 		// Make friction take effect on velocity
 		velocity.speed.scl(velocity.friction);
 		
-		// It's a spherical world!
-		if(position.x > TesteroidsGame.screen_width + 20) {
-			position.x = -20;
-		}
-		if(position.y > TesteroidsGame.screen_height + 20) {
-			position.y = -20;
-		}
-		if(position.x < -20) {
-			position.x = TesteroidsGame.screen_width + 20;
-		}
-		if(position.y < -20) {
-			position.y = TesteroidsGame.screen_height + 20;
+		// Delete if we go off the screen
+		if(position.x > TesteroidsGame.screen_width + 20 || position.y > TesteroidsGame.screen_height + 20 || position.x < -20 || position.y < -20) {
+			e.deleteFromWorld();
 		}
 	}
 }

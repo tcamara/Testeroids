@@ -1,7 +1,6 @@
 package com.timcamara.testeroids.components;
 
 import com.artemis.Component;
-import com.timcamara.testeroids.TesteroidsGame;
 
 public class Position extends Component {
 	public float x;
@@ -29,38 +28,16 @@ public class Position extends Component {
 	public void add(float x, float y) {
 		this.x += x;
 		this.y += y;
-		
-		limiter();
 	}
 	
 	public void set(float x, float y) {
 		this.x = x;
 		this.y = y;
-		
-		limiter();
 	}
 	
 	public void set(float x, float y, float r) {
 		this.x = x;
 		this.y = y;
 		this.rotation = r;
-		
-		limiter();
-	}
-	
-	// It's a spherical world!
-	private void limiter() {
-		if(x > TesteroidsGame.screen_width + 20) {
-			x = -20;
-		}
-		if(y > TesteroidsGame.screen_height + 20) {
-			y = -20;
-		}
-		if(x < -20) {
-			x = TesteroidsGame.screen_width + 20;
-		}
-		if(y < -20) {
-			y = TesteroidsGame.screen_height + 20;
-		}
 	}
 }

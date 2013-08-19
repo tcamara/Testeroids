@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Graphic extends Component {
 	public Sprite  sprite;
-	public boolean disabled;
 	
 	public Graphic(TextureAtlas.AtlasRegion region) {
 		sprite  = new Sprite(region);
