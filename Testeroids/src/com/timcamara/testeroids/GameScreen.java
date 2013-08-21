@@ -41,8 +41,8 @@ public class GameScreen implements Screen {
 		spriteRenderSystem   = world.setSystem(new GraphicRenderSystem(camera), true);
 		movementSystem       = world.setSystem(new MovementSystem(), true);
 		bulletMovementSystem = world.setSystem(new BulletMovementSystem(), true);
-		inputSystem          = world.setSystem(new InputSystem(world, atlas), true);
-		collisionSystem      = world.setSystem(new CollisionSystem(), true);
+		inputSystem          = world.setSystem(new InputSystem(atlas), true);
+		collisionSystem      = world.setSystem(new CollisionSystem(atlas), true);
 		world.initialize();
 		world.setManager(new GroupManager());
 		world.setManager(new TagManager());
@@ -52,7 +52,7 @@ public class GameScreen implements Screen {
 		EntityFactory.createPlayer(world, atlas);
 
 		for(int i = 0; i < 5; i++) {
-			EntityFactory.createAsteroid(world, atlas);
+			EntityFactory.createAsteroid(world, atlas, TesteroidsGame.screen_width, TesteroidsGame.screen_height);
 		}
 	}
 	

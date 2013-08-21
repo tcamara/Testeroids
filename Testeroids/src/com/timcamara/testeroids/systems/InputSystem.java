@@ -3,7 +3,6 @@ package com.timcamara.testeroids.systems;
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
-import com.artemis.World;
 import com.artemis.annotations.Mapper;
 import com.artemis.systems.EntityProcessingSystem;
 import com.badlogic.gdx.Gdx;
@@ -14,7 +13,6 @@ import com.timcamara.testeroids.EntityFactory;
 import com.timcamara.testeroids.components.*;
 
 public class InputSystem extends EntityProcessingSystem implements InputProcessor {
-	private World        world;
 	private TextureAtlas atlas;
 	private boolean      forward, left, right, fire;
     private int          fire_timer;
@@ -25,10 +23,9 @@ public class InputSystem extends EntityProcessingSystem implements InputProcesso
 	@Mapper ComponentMapper<Graphic>  gm;
 	
 	@SuppressWarnings("unchecked")
-	public InputSystem(World world, TextureAtlas atlas) {
+	public InputSystem(TextureAtlas atlas) {
 		super(Aspect.getAspectForAll(Player.class, Position.class, Velocity.class, Graphic.class));
 		
-		this.world = world;
 		this.atlas = atlas;
 	}
 	

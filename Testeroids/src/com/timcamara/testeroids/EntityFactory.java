@@ -26,11 +26,16 @@ public class EntityFactory {
 		return ship;
 	}
 	
-	public static Entity createAsteroid(World world, TextureAtlas atlas) {
+	public static Entity createAsteroid(World world, TextureAtlas atlas, float x, float y) {
+		return createAsteroid(world, atlas, 2, x, y, (float)rand.nextInt(360));
+	}
+	
+	public static Entity createAsteroid(World world, TextureAtlas atlas, int size, float x, float y, float direction) {
 		Entity asteroid = world.createEntity();
-		asteroid.addComponent(new Asteroid(2));
-		asteroid.addComponent(new Graphic(atlas.findRegion("asteroid_l", 1)));
-		asteroid.addComponent(new Position((TesteroidsGame.screen_width), (TesteroidsGame.screen_height)));
+		Asteroid a = new Asteroid(size);
+		asteroid.addComponent(a);
+		asteroid.addComponent(new Graphic(atlas.findRegion(a.getRegionName(a.size), rand.nextInt(2) + 1), direction));
+		asteroid.addComponent(new Position(x, y));
 		asteroid.addComponent(new Velocity(Asteroid.max_speed, (float)rand.nextInt(360)));
 		world.getManager(GroupManager.class).add(asteroid, "ASTEROIDS");
 		asteroid.addToWorld();
